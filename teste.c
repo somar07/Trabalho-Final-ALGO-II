@@ -4,8 +4,8 @@
 #include<ctype.h>
 
 int procura(char string1[], char string2[]);
-char troca(char string1[], char string2[]);
-void juntar(char string1[],char string2[]);
+void troca(char string1[], char string2[]);
+void juntarDuas(char string1[],char string2[]);
 
 char *strTolower(const char *src, char *dest);//função que recebe a string original e tranforma todas as letras em minusculas para fazer busca no dicionario.
 char compara1[100]="\0",compara2[100]="\0",final[100];
@@ -88,7 +88,7 @@ int procura(char string1[],char string2[]){
               return t;
 }
 
-char troca(char string1[],char string2[]){
+void troca(char string1[],char string2[]){
     char aux1[50], aux2[50],conserva1[50],conserva2[50];
     char caracter[2],apaga[20];
     int tam,i,j,k;
@@ -120,36 +120,24 @@ char troca(char string1[],char string2[]){
        }else{
         printf("mudou => %s %s",string1,string2);
        }
-       juntar(string1,string2);
+       juntarDuas(string1,string2);
     
     
 }
 
-void juntar(char string1[],char string2[]){
+void juntarDuas(char string1[],char string2[]){
 
      printf(" => %s %s\n",string1,string2);
-     
-            
+     char stand[50];
 
-            if(strcmp(compara1,string1)==0){
-                printf("Conserva\n");
-                strcpy(string1,compara1);
-            }else{
-                printf(" Str 1=> %s\n",string1);
-                strcat(final,string1);
-                strcpy(string1,compara1);
-               // strcat(final," ");
-                
-            }
-                printf(" Str 2=> %s\n",string2);
-            if(strcmp(string2,compara2)==0){
-                printf("Conserva\n");
-                strcpy(compara2,string2);
-            }else{
-                strcat(final,string2);
-                strcpy(compara2,string2);
-            }
-            printf("Final %s\n",final);
+     if(strcmp(string1,compara1)!=0&&strcmp(string2,compara2)!=0){
+         strcat(final,string1);
+         strcat(final,string2);
+        strcpy(compara1,string1);
+        strcpy(stand,string2);
+        strcpy(compara2,string2);
+     }else if()
+     
 }
 
 char *strTolower(const char *src, char *dest)
