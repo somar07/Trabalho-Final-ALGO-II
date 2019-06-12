@@ -12,8 +12,8 @@ char compara1[100]="\0",compara2[100]="\0",final[100];
 int main ()
 {
    int i,j,pos=0,k,tam,consta;
-   char str1[] = "a bbb aab a b";
-   int tempo[] = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+   char str1[] = "ab cd ef";
+   int tempo[] = {1,2,3,4,5,6,27,28};
    int espaco[10];//vetor que pega os indices de onde o tempo corresponde ao espaço
    char aux[20];
    char aux2[20];
@@ -41,13 +41,12 @@ int main ()
             palavra1[j][k]='\0';
     }
     //palavra1[j][k]='\0';
-        //printf("Aux2 - 1 => %s\n",palavra1[1]);
+        printf("Aux2  => %s\n",palavra1[1]);
             
             for(i=0;i<j;i++){
                 if((tempo[espaco[i]+1]-tempo[espaco[i]])<=20){//pega apenas os indices onde há espaços e faz a subtração para verificar se foi digitado dentro do espaço/tempo.
                         strcpy(aux,palavra1[i]);
                         strcpy(aux2,palavra1[i+1]);
-                        
                         troca(aux,aux2);
                     
                         pos++;
@@ -62,28 +61,31 @@ int main ()
 int procura(char string1[],char string2[]){
     int i,j,cont=0,cont2=0,tam,tam2,flag = 0,t;
    
-
-    char dicionario[50][50] = {"ab","bba","bbba"};
-    
-              tam=strlen(dicionario[i]);
+    printf("%s\n",string2);
+    char dicionario[50][50] = {"abc","d","de","f"};
+    printf("%s\n",dicionario[0]);
+              //tam=strlen(dicionario[i]);
               for(i=0;i<strlen(dicionario[i]);i++){
                   if(strcmp(string1,dicionario[i])==0){
                     printf("Esta no dicionario P1 => %s\n",string1);
                     cont =1;
-                    break;
+                    //break;
                   }
               }
               for(i=0;i<strlen(dicionario[i]);i++){
-                  if(strcmp(string2,dicionario[i])==0){
+                  printf("passei aqui\n");
+                  if(strcmp(string2,dicionario[i])==0||string2==dicionario[i]){
                     printf("Esta no dicionario P2 => %s\n",string2);
                     cont2 = 2;
-                    break;
+                    //break;
                   }
               }
               if(cont==0&&cont2==0){
                     t=0;
               }else if((cont+cont2)==3){
                   t = 1;
+              }else{
+                  t=2;
               }
               return t;
 }
@@ -113,14 +115,15 @@ void troca(char string1[],char string2[]){
         strcat(aux1,caracter);
         strcpy(string1,aux1);
        tam = procura(string1,string2);
+       printf("TAM => %d\n",tam);
        if(tam==0){
            strcpy(string1,conserva1);
            strcpy(string2,conserva2);
            printf("conservou => %s %s\n",string1,string2);
-       }else{
+       }else if(tam == 1){
         printf("mudou => %s %s",string1,string2);
        }
-       juntarDuas(string1,string2);
+       //juntarDuas(string1,string2);
     
     
 }
@@ -136,7 +139,7 @@ void juntarDuas(char string1[],char string2[]){
         strcpy(compara1,string1);
         strcpy(stand,string2);
         strcpy(compara2,string2);
-     }else if()
+     }
      
 }
 
